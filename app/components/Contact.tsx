@@ -33,11 +33,26 @@ export default function Contact() {
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
     try {
-      // Here you would typically send the form data to your backend
-      await new Promise((resolve) => setTimeout(resolve, 1000)) // Simulate API call
-      setSubmitSuccess(true)
-      reset()
-      setTimeout(() => setSubmitSuccess(false), 3000)
+      // Encode the form data for Netlify
+      const formData = new FormData()
+      Object.entries(data).forEach(([key, value]) => {
+        formData.append(key, value)
+      })
+      formData.append("form-name", "contact")
+
+      // Submit the form to Netlify
+      const response = await fetch("/", {
+        method: "POST",
+        body: formData,
+      })
+
+      if (response.ok) {
+        setSubmitSuccess(true)
+        reset()
+        setTimeout(() => setSubmitSuccess(false), 3000)
+      } else {
+        throw new Error("Form submission failed")
+      }
     } catch (error) {
       console.error("Error submitting form:", error)
     } finally {
@@ -92,7 +107,12 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+           <form onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg"
+                data-netlify="true" name="contact" netlify-honeypot="bot-field" method="POST">
+          {/* Add these hidden inputs for Netlify */}
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="bot-field" />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -175,4 +195,3 @@ export default function Contact() {
     </section>
   )
 }
-

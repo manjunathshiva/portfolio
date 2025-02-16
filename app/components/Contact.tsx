@@ -35,16 +35,16 @@ export default function Contact() {
     try {
       // Encode the form data for Netlify
       const formData = new FormData()
+      // Add form-name field that matches the form name in public/form.html
+      formData.append("form-name", "contact")
       Object.entries(data).forEach(([key, value]) => {
         formData.append(key, value)
       })
-      formData.append("form-name", "contact")
 
       // Submit the form to Netlify
       const response = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
+        body: formData
       })
 
       if (response.ok) {
@@ -108,15 +108,18 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-           <form onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg"
-                data-netlify="true" name="contact"  method="POST">
+          <form 
+              onSubmit={handleSubmit(onSubmit)} 
+              className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg"
+              data-netlify="true" 
+              name="contact"
+              netlify-honeypot="bot-field"
+          >
           {/* Add these hidden inputs for Netlify */}
             <input type="hidden" name="form-name" value="contact" />
-            <p className="hidden">
-                <label>
-                  Don't fill this out if you're human: <input name="bot-field" />
-                </label>
-              </p>
+            <div hidden>
+              <input name="bot-field" />
+            </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>

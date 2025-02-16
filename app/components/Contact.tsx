@@ -108,10 +108,14 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
           >
            <form onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg"
-                data-netlify="true" name="contact" netlify-honeypot="bot-field" method="POST">
+                data-netlify="true" name="contact"  method="POST">
           {/* Add these hidden inputs for Netlify */}
             <input type="hidden" name="form-name" value="contact" />
-            <input type="hidden" name="bot-field" />
+            <p className="hidden">
+                <label>
+                  Don't fill this out if you're human: <input name="bot-field" />
+                </label>
+              </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -178,7 +182,6 @@ export default function Contact() {
                   {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin mr-2" /> : <Send className="w-5 h-5 mr-2" />}
                   {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
-                <input type="hidden" name="form-name" value="contact" />
               </div>
               {submitSuccess && (
                 <div className="mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-md">

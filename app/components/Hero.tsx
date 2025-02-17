@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { GitlabIcon as GitHub, Linkedin, Mail, ArrowDown } from "lucide-react"
+import { GitlabIcon as GitHub, Linkedin, Mail, ArrowDown, BookOpen } from "lucide-react"
 import { motion } from "framer-motion"
 
 const CodePattern = () => (
@@ -57,6 +57,8 @@ export default function Hero() {
             <div className="flex justify-center lg:justify-start space-x-4 mb-8">
               <a
                 href="https://github.com/manjunathshiva"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white/80 hover:bg-white dark:bg-gray-800/80 dark:hover:bg-gray-800 transition-colors duration-300 shadow-lg hover:shadow-xl"
                 aria-label="GitHub Profile"
               >
@@ -64,13 +66,26 @@ export default function Hero() {
               </a>
               <a
                 href="https://www.linkedin.com/in/manjunath-janardhan-54a5537/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white/80 hover:bg-white dark:bg-gray-800/80 dark:hover:bg-gray-800 transition-colors duration-300 shadow-lg hover:shadow-xl"
                 aria-label="LinkedIn Profile"
               >
                 <Linkedin className="w-6 h-6 text-gray-700 dark:text-gray-300" />
               </a>
               <a
+                href="https://medium.com/@manjunath.shiva"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-white/80 hover:bg-white dark:bg-gray-800/80 dark:hover:bg-gray-800 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                aria-label="Medium Articles"
+              >
+                <BookOpen className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+              </a>
+              <a
                 href="mailto:manjunath.shiva@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white/80 hover:bg-white dark:bg-gray-800/80 dark:hover:bg-gray-800 transition-colors duration-300 shadow-lg hover:shadow-xl"
                 aria-label="Email Contact"
               >

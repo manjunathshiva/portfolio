@@ -67,7 +67,7 @@ export default function Contact() {
       className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-indigo-900 transition-colors duration-300 overflow-hidden relative"
     >
       <div className="container mx-auto px-6 relative z-10">
-        <motion.h2
+        {/* <motion.h2
           className="text-4xl font-bold mb-12 text-center dark:text-white"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
         >
           Get in Touch
-        </motion.h2>
+        </motion.h2>  */}
         <div className="flex flex-col lg:flex-row gap-12">
           <motion.div
             className="lg:w-1/3"
@@ -101,7 +101,7 @@ export default function Contact() {
               </div>
             </div>
           </motion.div>
-          <motion.div
+          {/* <motion.div
             className="lg:w-2/3"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -115,7 +115,7 @@ export default function Contact() {
               name="contact"
               netlify-honeypot="bot-field"
           >
-          {/* Add these hidden inputs for Netlify */}
+         
             <input type="hidden" name="form-name" value="contact" />
             <div hidden>
               <input name="bot-field" />
@@ -194,6 +194,7 @@ export default function Contact() {
               )}
             </form>
           </motion.div>
+          */}
         </div>
       </div>
       <div className="absolute bottom-0 right-0 w-64 h-64 -mb-32 -mr-32 opacity-20">

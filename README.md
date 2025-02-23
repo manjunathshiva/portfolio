@@ -1,25 +1,75 @@
-# Manjunath Janardhan's Portfolio
+# Manjunath Janardhan's Portfolio Website
 
-Welcome to my personal portfolio website! This project is a showcase of my skills, experiences, and projects as a passionate developer. Built with modern web technologies, this site highlights my journey in software development and my commitment to creating clean, user-friendly solutions.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR-NETLIFY-ID/deploy-status)](https://manjunathjanardhan.netlify.app/)
 
-## Live Demo
+## 🚀 Overview
 
-Check out the live version of this portfolio here: [https://manjunathjanardhan.netlify.app/](https://manjunathjanardhan.netlify.app/)
+Welcome to my personal portfolio website repository! This project showcases my professional journey, skills, and projects as a Senior Software Engineer. The website is built with modern web technologies and demonstrates my commitment to creating clean, efficient, and user-friendly solutions.
 
-## About Me
+🔗 **[View Live Portfolio](https://manjunathjanardhan.netlify.app/)**
 
-I’m Manjunath Janardhan, a [Senior Software Engineer] based in [Bangalore]. I specialize in building web applications with a focus on seamless user experiences and robust functionality. My interests include [AI, web development, problem-solving], and I’m always eager to learn and explore new technologies.
+## 👨‍💻 About Me
 
-- **Email**: [manjunath.shiva@gmail.com](manjunath.shiva@gmail.com) 
-- **GitHub**: [github.com/manjunathshiva](https://github.com/manjunathshiva)
-- **LinkedIn**: [linkedin.com/in/manjunath-janardhan-54a5537/](https://www.linkedin.com/in/manjunath-janardhan-54a5537/) 
-- **Portfolio**: [https://manjunathjanardhan.netlify.app/](https://manjunathjanardhan.netlify.app/)
+I'm a Senior Software Engineer based in Bangalore, India, with expertise in building scalable web applications. My focus areas include:
 
+- Web Application Development
+- Artificial Intelligence
+- Problem Solving
+- User Experience Design
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript, React
-- **Styling**: CSS 
-- **Deployment**: Hosted on [Netlify](https://www.netlify.com/)
-- **Tools**: Git, GitHub, VS Code
+### Frontend
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- React.js
 
+### Development Tools
+- Git & GitHub
+- VS Code
+- npm/yarn
+
+### Deployment
+- Netlify
+
+## 🌟 Features
+
+- Responsive design that works across all devices
+- Clean and modern user interface
+- Project showcase section
+- Skills and experience highlights
+- Contact form for professional inquiries
+
+## 🚀 Getting Started
+
+To run this portfolio locally:
+
+```bash
+# Clone the repository
+git clone https://github.com/manjunathshiva/portfolio.git
+
+# Navigate to project directory
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+```
+
+## 📫 Connect With Me
+
+- **Email**: [manjunath.shiva@gmail.com](mailto:manjunath.shiva@gmail.com)
+- **LinkedIn**: [Manjunath Janardhan](https://www.linkedin.com/in/manjunath-janardhan-54a5537/)
+- **GitHub**: [manjunathshiva](https://github.com/manjunathshiva)
+- **Portfolio**: [manjunathjanardhan.netlify.app](https://manjunathjanardhan.netlify.app/)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+💻 Designed & Built by Manjunath Janardhan

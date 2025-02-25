@@ -8,6 +8,11 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 
+// Supabase configuration
+const supabaseUrl = 'https://odnjaipezxcwhqvgqobr.supabase.co'
+// Note: In a production app, store this in .env.local file
+// You'll need to add your SUPABASE_KEY here
+
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
@@ -20,6 +25,7 @@ type FormData = z.infer<typeof formSchema>
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState("")
 
   const {
     register,
@@ -32,19 +38,25 @@ export default function Contact() {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
+    setSubmitError("")
+    
     try {
-      // Encode the form data for Netlify
-      const formData = new FormData()
-      // Add form-name field that matches the form name in public/form.html
-      formData.append("form-name", "contact")
-      Object.entries(data).forEach(([key, value]) => {
-        formData.append(key, value)
-      })
-
-      // Submit the form to Netlify
-      const response = await fetch("/", {
+      // Submit the form to Supabase
+      const response = await fetch(`${supabaseUrl}/rest/v1/contact_submissions`, {
         method: "POST",
-        body: formData
+        headers: {
+          "Content-Type": "application/json",
+          // Replace SUPABASE_KEY with your actual key
+          "apikey": process.env.NEXT_PUBLIC_SUPABASE_KEY || "",
+          "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message,
+          created_at: new Date().toISOString()
+        })
       })
 
       if (response.ok) {
@@ -52,10 +64,12 @@ export default function Contact() {
         reset()
         setTimeout(() => setSubmitSuccess(false), 3000)
       } else {
-        throw new Error("Form submission failed")
+        const errorData = await response.json()
+        throw new Error(errorData.message || "Form submission failed")
       }
     } catch (error) {
       console.error("Error submitting form:", error)
+      setSubmitError(error instanceof Error ? error.message : "An unknown error occurred")
     } finally {
       setIsSubmitting(false)
     }
@@ -67,7 +81,7 @@ export default function Contact() {
       className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-indigo-900 transition-colors duration-300 overflow-hidden relative"
     >
       <div className="container mx-auto px-6 relative z-10">
-        {/* <motion.h2
+        <motion.h2
           className="text-4xl font-bold mb-12 text-center dark:text-white"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +89,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
         >
           Get in Touch
-        </motion.h2>  */}
+        </motion.h2>
         <div className="flex flex-col lg:flex-row gap-12">
           <motion.div
             className="lg:w-1/3"
@@ -101,26 +115,17 @@ export default function Contact() {
               </div>
             </div>
           </motion.div>
-          {/* <motion.div
+          <motion.div
             className="lg:w-2/3"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-          <form 
+            <form 
               onSubmit={handleSubmit(onSubmit)} 
               className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg"
-              data-netlify="true" 
-              name="contact"
-              netlify-honeypot="bot-field"
-          >
-         
-            <input type="hidden" name="form-name" value="contact" />
-            <div hidden>
-              <input name="bot-field" />
-            </div>
-
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -192,9 +197,13 @@ export default function Contact() {
                   Message sent successfully!
                 </div>
               )}
+              {submitError && (
+                <div className="mt-4 p-4 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-md">
+                  Error: {submitError}
+                </div>
+              )}
             </form>
           </motion.div>
-          */}
         </div>
       </div>
       <div className="absolute bottom-0 right-0 w-64 h-64 -mb-32 -mr-32 opacity-20">
